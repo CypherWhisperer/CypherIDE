@@ -68,7 +68,7 @@ return {
           json            = { "prettier" },
           jsonc           = { "prettier" },
           yaml            = { "prettier" },
-          markdown        = { "prettier" },
+          --markdown        = { "prettier" },
           graphql         = { "prettier" },
 
           -- Lua         
