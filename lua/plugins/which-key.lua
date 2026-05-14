@@ -37,19 +37,19 @@ return {
       plugins = {
         -- Show spelling suggestions when pressing z= on a misspelled word.
         spelling = {
-          enabled    = true,
+          enabled     = true,
           suggestions = 20,
         },
         -- Show which-key for Neovim's built-in presets (g, z, <C-w>, etc.).
         -- These are Vim's own keymaps — which-key can document them too.
         presets = {
-          operators    = true,   -- d, y, c, etc.
-          motions      = true,   -- gg, G, w, b, etc.
-          text_objects = true,   -- after d/y/c: iw, is, ip, etc.
-          windows      = true,   -- <C-w> split management
-          nav          = true,   -- <C-f>, <C-b>, etc.
-          z            = true,   -- folds and scrolling
-          g            = true,   -- go-to commands
+          operators    = true, -- d, y, c, etc.
+          motions      = true, -- gg, G, w, b, etc.
+          text_objects = true, -- after d/y/c: iw, is, ip, etc.
+          windows      = true, -- <C-w> split management
+          nav          = true, -- <C-f>, <C-b>, etc.
+          z            = true, -- folds and scrolling
+          g            = true, -- go-to commands
         },
       },
 
@@ -70,7 +70,7 @@ return {
         -- e.g. "Leader > Git" when inside <leader>g.
         breadcrumb = "»",
         separator  = "➜",
-        group      = "+",   -- prefix for group labels in the popup
+        group      = "+", -- prefix for group labels in the popup
         ellipsis   = "…",
         -- Nerd Font icons for key types shown next to each binding.
         mappings   = true,
@@ -80,12 +80,18 @@ return {
         colors     = true,
         -- Requires nvim-web-devicons (already a dependency of neo-tree / lualine).
         keys       = {
-          Up        = " ",  Down    = " ",
-          Left      = " ", Right   = " ",
-          C         = "󰘴 ", M       = "󰘵 ",
-          S         = "󰘶 ", CR      = "󰌑 ",
-          Esc       = "󱊷 ", Tab     = "󰌒 ",
-          Space     = "󱁐 ", BS      = "󰁮 ",
+          Up              = " ",
+          Down            = " ",
+          Left            = " ",
+          Right           = " ",
+          C               = "󰘴 ",
+          M               = "󰘵 ",
+          S               = "󰘶 ",
+          CR              = "󰌑 ",
+          Esc             = "󱊷 ",
+          Tab             = "󰌒 ",
+          Space           = "󱁐 ",
+          BS              = "󰁮 ",
           ScrollWheelDown = "󱕐 ",
           ScrollWheelUp   = "󱕑 ",
         },
@@ -93,16 +99,16 @@ return {
 
       -- ── WINDOW STYLE ───────────────────────────────────────────────────
       win = {
-        border   = "rounded",
-        padding  = { 1, 2 },   -- { top/bottom, left/right } padding
-        wo = {
-          winblend = 10,        -- slight transparency (0 = opaque, 100 = invisible)
+        border  = "rounded",
+        padding = { 1, 2 }, -- { top/bottom, left/right } padding
+        wo      = {
+          winblend = 10,    -- slight transparency (0 = opaque, 100 = invisible)
         },
       },
 
       -- ── LAYOUT ─────────────────────────────────────────────────────────
       layout = {
-        width  = { min = 20 },  -- minimum column width
+        width   = { min = 20 }, -- minimum column width
         spacing = 3,            -- spacing between columns
       },
     })
@@ -126,15 +132,31 @@ return {
       { "<leader>g", group = "Git (Fugitive)" },
       { "<leader>h", group = "Git Hunks (Gitsigns)" },
       { "<leader>i", group = "Inlay Hints" },
-      { "<leader>m", group = "Manual Format/Lint" },
       { "<leader>r", group = "Rename / Refactor" },
       { "<leader>t", group = "Toggles" },
       { "<leader>w", group = "Workspace" },
 
+      -- { "<leader>m", group = "Manual Format/Lint" },
+      -- NOTE: <leader>m is shared tenancy.
+      -- <leader>mp (format) and <leader>ml (lint) predate this group and are owned
+      -- by linting-and-formatting.lua. New <leader>m* keys below are Markdown tools.
+      -- If this prefix ever gets crowded, Markdown migrates to <leader>M.
+      { "<leader>m", group = "Markdown / Format" },
+      -- ── MARKDOWN SUBGROUP ─────────────────────────────────────────────────────
+      -- Markdown tool bindings live in lua/plugins/markdown.lua.
+      -- <leader>mp and <leader>ml are excluded — they belong to format/lint.
+      { "<leader>mr", desc = "Markdown: toggle inline render" },
+      { "<leader>mo", desc = "Markdown: open preview" },
+      { "<leader>mx", desc = "Markdown: close preview" },
+      { "<leader>mt", desc = "Markdown: toggle preview" },
+      { "<leader>mh", desc = "Markdown: find heading" },
+      { "<leader>mf", desc = "Markdown: follow link" },
+
+
       -- ── BRACKET NAVIGATION GROUPS ───────────────────────────────────
       -- ]x / [x pairs are common in Vim. Label them so the popup is useful.
-      { "]",         group = "Next →" },
-      { "[",         group = "← Prev" },
+      { "]", group = "Next →" },
+      { "[", group = "← Prev" },
 
       -- ── SPECIFIC BINDING DESCRIPTIONS ───────────────────────────────
       -- These override or supplement descriptions for keys that don't go

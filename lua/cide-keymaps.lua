@@ -30,8 +30,8 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Editor: clear search highlight" })
 
 -- File operations
-vim.keymap.set("n", "<leader>w", "<cmd>w<CR>",  { noremap = true, silent = true, desc = "Editor: save file" })
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>",  { noremap = true, silent = true, desc = "Editor: quit" })
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { noremap = true, silent = true, desc = "Editor: save file" })
+vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { noremap = true, silent = true, desc = "Editor: quit" })
 
 -- Centered scrolling — keeps your eye on context while jumping half-pages.
 -- zz recenters the view so the cursor line sits in the middle of the screen.
@@ -60,11 +60,11 @@ vim.keymap.set("v", "p", '"_dP', { noremap = true, silent = true, desc = "Editor
 
 return {
 
-  leader = " ",   -- Space. Documentation only — set in cide-options.lua.
+  leader    = " ", -- Space. Documentation only — set in cide-options.lua.
 
   -- ── LSP ────────────────────────────────────────────────────────────────────
   -- Set inside the LspAttach autocmd (buffer-local). See lsp-config.lua.
-  lsp = {
+  lsp       = {
     hover             = "K",
     definition        = "gd",
     declaration       = "gD",
@@ -74,8 +74,8 @@ return {
     -- <C-k> is intentionally NOT used here — it is owned by tmux navigation.
     -- Signature help lives in insert mode only, on <C-s> which is rarely used
     -- in insert mode and doesn't conflict with any pane/tmux binding.
-    signature_help_i  = "<C-s>",   -- insert mode: show parameter signature
-    signature_help_n  = "gK",      -- normal mode: show parameter signature
+    signature_help_i  = "<C-s>", -- insert mode: show parameter signature
+    signature_help_n  = "gK",    -- normal mode: show parameter signature
     rename            = "<leader>rn",
     code_action       = "<leader>ca",
     format            = "<leader>f",
@@ -92,49 +92,49 @@ return {
   -- ── GIT ────────────────────────────────────────────────────────────────────
   -- gitsigns keys are buffer-local (set in on_attach). See git.lua.
   -- fugitive keys are global (set in config). See git.lua.
-  git = {
+  git       = {
     -- gitsigns — hunk navigation
-    next_hunk         = "]h",
-    prev_hunk         = "[h",
+    next_hunk      = "]h",
+    prev_hunk      = "[h",
     -- gitsigns — staging
-    stage_hunk        = "<leader>hs",
-    reset_hunk        = "<leader>hr",
-    undo_stage        = "<leader>hu",
-    stage_buffer      = "<leader>hS",
-    reset_buffer      = "<leader>hR",
+    stage_hunk     = "<leader>hs",
+    reset_hunk     = "<leader>hr",
+    undo_stage     = "<leader>hu",
+    stage_buffer   = "<leader>hS",
+    reset_buffer   = "<leader>hR",
     -- gitsigns — inspection
-    preview_hunk      = "<leader>hp",
-    blame_line        = "<leader>hb",
-    toggle_blame      = "<leader>tb",
-    diff_index        = "<leader>hd",
-    diff_head         = "<leader>hD",
-    toggle_deleted    = "<leader>td",
+    preview_hunk   = "<leader>hp",
+    blame_line     = "<leader>hb",
+    toggle_blame   = "<leader>tb",
+    diff_index     = "<leader>hd",
+    diff_head      = "<leader>hD",
+    toggle_deleted = "<leader>td",
     -- fugitive — global git workflow
-    status            = "<leader>gs",
-    commit            = "<leader>gc",
-    push              = "<leader>gp",
-    pull              = "<leader>gl",
-    log               = "<leader>gL",
-    diff_split        = "<leader>gd",
-    blame_file        = "<leader>gb",
+    status         = "<leader>gs",
+    commit         = "<leader>gc",
+    push           = "<leader>gp",
+    pull           = "<leader>gl",
+    log            = "<leader>gL",
+    diff_split     = "<leader>gd",
+    blame_file     = "<leader>gb",
   },
 
   -- ── FORMATTING / LINTING ───────────────────────────────────────────────────
   -- Set in linting-and-formatting.lua.
-  format = {
+  format    = {
     manual_format = "<leader>mp",
     manual_lint   = "<leader>ml",
   },
 
   -- ── FILE EXPLORER ──────────────────────────────────────────────────────────
-  neo_tree = {
+  neo_tree  = {
     -- <C-b> mirrors the VSCode sidebar toggle (Ctrl+B).
     -- NOTE: <C-b> scrolls up in insert mode, but neo-tree opens in normal mode
     -- so this does not conflict in practice.
     toggle = "<C-b>",
   },
 
-  oil = {
+  oil       = {
     -- "-" is the oil.nvim convention: "go up to the parent directory" feel.
     -- Opens oil in a floating window over the current buffer.
     open_float = "-",
@@ -143,13 +143,13 @@ return {
   -- ── TELESCOPE ──────────────────────────────────────────────────────────────
   -- Set in telescope.lua.
   telescope = {
-    find_files   = "<C-p>",         -- Ctrl+P: the universal "find file" shortcut
-    live_grep    = "<leader>fg",
-    buffers      = "<leader>fb",
-    help_tags    = "<leader>fh",
-    diagnostics  = "<leader>fd",
-    resume       = "<leader>fr",    -- re-open last telescope picker with results
-    oldfiles     = "<leader>fo",    -- recently opened files
+    find_files  = "<C-p>",  -- Ctrl+P: the universal "find file" shortcut
+    live_grep   = "<leader>fg",
+    buffers     = "<leader>fb",
+    help_tags   = "<leader>fh",
+    diagnostics = "<leader>fd",
+    resume      = "<leader>fr",  -- re-open last telescope picker with results
+    oldfiles    = "<leader>fo",  -- recently opened files
   },
 
   -- ── PANE / WINDOW NAVIGATION ───────────────────────────────────────────────
@@ -174,6 +174,18 @@ return {
   -- These control the manual triggers (you rarely need them — the popup appears
   -- automatically after `timeoutlen` ms).
   which_key = {
-    show = "<leader>?",   -- show ALL keymaps as a searchable list
+    show = "<leader>?", -- show ALL keymaps as a searchable list
+  },
+
+  -- ── MARKDOWN ───────────────────────────────────────────────────────────────
+  -- Set in lua/plugins/markdown.lua via FileType and plugin config functions.
+  -- <leader>mp and <leader>ml are intentionally excluded — owned by format/lint.
+  markdown  = {
+    toggle_render  = "<leader>mr", -- toggle in-buffer render (render-markdown / markview)
+    preview_open   = "<leader>mo", -- open browser preview
+    preview_close  = "<leader>mx", -- close browser preview
+    preview_toggle = "<leader>mt", -- toggle browser preview
+    find_heading   = "<leader>mh", -- Telescope heading picker (marksman)
+    follow_link    = "<leader>mf", -- follow link under cursor (marksman go-to-def)
   },
 }
