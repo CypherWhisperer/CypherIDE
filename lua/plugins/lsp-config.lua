@@ -52,68 +52,70 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     -- Dependencies must be loaded BEFORE this plugin initializes.
-    -- lazy.nvim respects this order automatically.   
+    -- lazy.nvim respects this order automatically.
     dependencies = {
       { "mason-org/mason.nvim" },
       "neovim/nvim-lspconfig",
     },
     opts = {
-      
+
       -- Servers to auto-install if not already present on the system.
-      -- Trim list to desired languages 
-      -- Installing Many servers on first launch will be slow. 
+      -- Trim list to desired languages
+      -- Installing Many servers on first launch will be slow.
       -- Add more as required
       ensure_installed = {
         -- Extend when needed
         --
-        -- "arduino_language_server", "clojure_lsp", "elixirls","julials",
+        -- "clojure_lsp", "elixirls","julials",
         -- "kotlin_language_server",  "ocamllsp", "intelephense", "powershell_es",
-        -- "solargraph", "solidity_ls", "perlpls", 
+        -- "solargraph", "solidity_ls", "perlpls",
         --
         --  These Need a non-trivial extra configuration to get 'em working
         -- "jdtls",   -- download a full JDT runtime
-        -- "metals",  -- bootstraps an entire Scala toolchain 
+        -- "metals",  -- bootstraps an entire Scala toolchain
         --
         -- Only add if you install the Swift toolchain on your machine, and note it won't
         -- be Mason-managed; you'd enable it via vim.lsp.enable('sourcekit') manually.
-        -- "sourcekit", 
-        
+        -- "sourcekit",
+
+        "arduino_language_server",
+
         -- Web / JS ecosystem
-        "ts_ls",          -- TS & JS (NOTE: "tsserver" name was deprecated)
-        "html",           -- HTML
-        "cssls",          -- CSS / SCSS / Less
-        "jsonls",         -- JSON with schema support
-        "eslint",         -- ESLint as an LSP (diagnostics + fix-on-save)
-        "astro",          -- Astro framework
-        "angularls",      -- Angular framework
-        "svelte",         -- Svelte framework
-        "graphql",        -- GraphQL
-        "prismals",       -- Prisma ORM schemas
-        "lemminx",        -- XML
+        "ts_ls",     -- TS & JS (NOTE: "tsserver" name was deprecated)
+        "html",      -- HTML
+        "cssls",     -- CSS / SCSS / Less
+        "jsonls",    -- JSON with schema support
+        "eslint",    -- ESLint as an LSP (diagnostics + fix-on-save)
+        "astro",     -- Astro framework
+        "angularls", -- Angular framework
+        "svelte",    -- Svelte framework
+        "graphql",   -- GraphQL
+        "prismals",  -- Prisma ORM schemas
+        "lemminx",   -- XML
 
         -- Systems / compiled languages
-        "lua_ls",         -- Lua
-        "clangd",         -- C and C++
+        "lua_ls",        -- Lua
+        "clangd",        -- C and C++
         "cmake",
-        "rust_analyzer",  -- Rust (large binary)
-        "gopls",          -- Go
-        "zls",            -- Zig
+        "rust_analyzer", -- Rust (large binary)
+        "gopls",         -- Go
+        "zls",           -- Zig
 
         -- Scripting / interpreted
-        "pyright",        -- Python (static type checker + LSP)
-        "bashls",         -- Bash / shell scripts
+        "pyright", -- Python (static type checker + LSP)
+        "bashls",  -- Bash / shell scripts
 
         -- Config & markup
-        "yamlls",         -- YAML (with schema support)
-        "taplo",          -- TOML
-        "dockerls",       -- Dockerfile
-        "marksman",       -- Markdown (link checking, references)
+        "yamlls",   -- YAML (with schema support)
+        "taplo",    -- TOML
+        "dockerls", -- Dockerfile
+        "marksman", -- Markdown (link checking, references)
 
         -- Extras
         -- "volar",          -- Vue 3 (but mason doesn't recorgnize it)
-        "helm_ls",        -- Helm chart templates
+        "helm_ls", -- Helm chart templates
         --"nixd",           -- Nix expressions
-        "sqlls",          -- SQL
+        "sqlls",   -- SQL
         "vimls",
       },
 
@@ -144,7 +146,6 @@ return {
       "saghen/blink.cmp",
     },
     config = function()
-
       -- ── BLINK.CMP CAPABILITIES ─────────────────────────────────────────
       -- blink.cmp extends the LSP capabilities that Neovim advertises to
       -- servers. "Capabilities" is the handshake where Neovim tells the server
@@ -167,9 +168,9 @@ return {
         -- DISABLED here because virtual_lines covers the current line better.
         -- PREV:
         -- virtual_text = {
-          -- spacing = 4,  -- spaces btn code and message
-          -- prefix = "●", -- symbol before each diagnostic message
-        --}, 
+        -- spacing = 4,  -- spaces btn code and message
+        -- prefix = "●", -- symbol before each diagnostic message
+        --},
         virtual_text = false,
 
         -- virtual_lines: shows the full diagnostic message on a dedicated
@@ -198,7 +199,7 @@ return {
           },
         },
 
-        -- THE LEGACY PATH         
+        -- THE LEGACY PATH
         -- ── DIAGNOSTIC SIGNS (gutter icons) ──────────────────────────────────
         -- These are the icons shown in the sign column (the thin column left of
         -- line numbers) to indicate errors, warnings, hints, and info.
@@ -209,7 +210,7 @@ return {
         --  Info  = " ",
         --}
         --for type, icon in pairs(signs) do
-          -- "DiagnosticSign" .. "Error" → "DiagnosticSignError", etc.
+        -- "DiagnosticSign" .. "Error" → "DiagnosticSignError", etc.
         --  local hl = "DiagnosticSign" .. type
         --  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         --end
@@ -228,7 +229,7 @@ return {
         -- Floating window style when you open a diagnostic with <leader>e.
         float = {
           border = "rounded",
-          source = true,   -- show which LSP server produced this diagnostic
+          source = true, -- show which LSP server produced this diagnostic
         },
       })
 
@@ -261,7 +262,7 @@ return {
       --      runtime = {
       --        version = "LuaJIT",
       --      },
-      --      diagnostics = {  
+      --      diagnostics = {
       --        globals = { "vim", "require" },
       --      },
       --      workspace = {
@@ -278,12 +279,12 @@ return {
       -- lua_ls: Tell the Lua language server that "vim" is a valid global.
       -- Without this, every `vim.*` call in your Neovim config gets flagged
       -- as "undefined global 'vim'".
-      -- 
+      --
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
             runtime = {
-              version = "LuaJIT",   -- Neovim uses LuaJIT, not standard Lua 5.x
+              version = "LuaJIT", -- Neovim uses LuaJIT, not standard Lua 5.x
             },
             diagnostics = {
               -- Recognize these globals so lua_ls doesn't warn about them.
@@ -314,13 +315,13 @@ return {
             -- "b0o/schemastore.nvim" and replace the above with:
             -- schemas = require("schemastore").json.schemas(),
             -- Without the plugin, you can hardcode schemas like:
-            
+
             --   { fileMatch = { "package.json" }, url = "https://json.schemastore.org/package.json" },
             -- },
           },
         },
       })
- 
+
       -- yamlls: YAML schema validation (same idea as jsonls).
       vim.lsp.config("yamlls", {
         settings = {
@@ -329,27 +330,73 @@ return {
               enable = true, -- use built-in schema store
               url    = "",   -- required field when enable = true
             },
-            validate = true,
-            format   = { enable = true },
+            validate    = true,
+            format      = { enable = true },
           },
         },
       })
+
+      -- arduino_language_server: LSP for .ino sketch files.
+      --
+      -- ARCHITECTURE NOTE — why this server is not Mason-managed like the others:
+      --   arduino-language-server is a thin wrapper that delegates to two external
+      --   binaries at runtime: arduino-cli (board queries, compilation) and clangd
+      --   (C++ indexing). On NixOS, Mason cannot install patched binaries — its
+      --   downloaded executables have hardcoded glibc paths that don't exist on
+      --   NixOS's root filesystem. All three binaries (arduino-language-server,
+      --   arduino-cli, clangd) are instead installed via Nix in hm.nix and are
+      --   resolved from PATH here.
+      --
+      -- BOARD AWARENESS:
+      --   The -fqbn flag tells the server which board you're targeting, which
+      --   affects which built-in functions and constants are valid. The value
+      --   is propagated from cypher-os.arduino.fqbn in options.nix → hm.nix →
+      --   the arduino-cli config. If you change boards, update that
+      --   option and restart the server (:LspRestart) in any open .ino buffers.
+      --
+      -- SKETCH REQUIREMENT:
+      --   The server only attaches when a sketch.yaml exists in the project root.
+      --   Without it, the server exits silently — no error, just no LSP.
+      --   Generate one with: arduino-cli sketch new <SketchName>
+      --   Or write it manually — see the sketch convention note in CypherOS/modules/arduino/hm.nix.
+      --
+      -- KNOWN UPSTREAM QUIRK:
+      --   Built-in Arduino globals (Serial, pinMode, digitalWrite, etc.) may be
+      --   flagged as undefined by clangd's C++ indexer. This is a known bug in
+      --   arduino-language-server, not your config. Completions and go-to-definition
+      --   for user-defined code still work correctly.
+      vim.lsp.config("arduino_language_server", {
+        cmd = {
+          "arduino-language-server",
+          "-cli", vim.fn.exepath("arduino-cli"),
+          "-cli-config", vim.fn.expand("~/.config/arduino-cli/arduino-cli.yaml"),
+          "-clangd", vim.fn.exepath("clangd"),
+          "-fqbn", "arduino:avr:uno", -- keep in sync with cypher-os.arduino.fqbn
+        },
+        -- The server only handles .ino files. clangd (already in ensure_installed)
+        -- continues to handle any plain .c / .cpp files independently.
+        filetypes = { "arduino" },
+      })
+
+      -- Register .ino as the "arduino" filetype so the server attaches correctly.
+      -- Without this, Neovim detects .ino as C++ and routes it to clangd only.
+      vim.filetype.add({ extension = { ino = "arduino" } })
 
       -- ts_ls: TypeScript / JavaScript.
       -- No extra settings needed — the defaults are good.
       -- The name changed from "tsserver" to "ts_ls" in recent versions.
       -- (Nothing to call here since we have no overrides, but kept as a
-      --  comment so we know where to add TypeScript-specific settings later.)      
+      --  comment so we know where to add TypeScript-specific settings later.)
       --
       -- Adding `init_options` enables support for TypeScript plugins if needed.
       -- vim.lsp.config("ts_ls", {
-          -- Uncomment for Angular/ Vue and need TS plugin support:
-          -- init_options = {
-          --   plugins = { ... }
-          -- }
-      -- }) 
+      -- Uncomment for Angular/ Vue and need TS plugin support:
+      -- init_options = {
+      --   plugins = { ... }
+      -- }
+      -- })
 
-      -- ── LSPATTACH AUTOCMD ────────────────────────────────────────────── 
+      -- ── LSPATTACH AUTOCMD ──────────────────────────────────────────────
       -- WHY LspAttach instead of global keymaps?
       --
       --   Global keymaps exist in EVERY buffer, even plain text files where no
@@ -367,14 +414,14 @@ return {
       local lsp_augroup = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true })
 
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = lsp_augroup,
-        desc  = "Set buffer-local LSP keymaps when a language server attaches",
-        callback = function(ev)        
+        group    = lsp_augroup,
+        desc     = "Set buffer-local LSP keymaps when a language server attaches",
+        callback = function(ev)
           -- ev.buf    → the buffer number the server just attached to
           -- ev.data.client_id → the ID of the LSP client (server instance)
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
           if not client then return end -- safety guard: abort if client not found
-          
+
           -- Shared options for all keymaps in this buffer:
           --   buffer  = ev.buf  → makes the keymap LOCAL to this buffer only
           --   noremap = true    → prevents this mapping from being re-mapped by other plugins
@@ -396,15 +443,15 @@ return {
 
           -- ── NAVIGATION ───────────────────────────────────────────────
           -- Jump to where a symbol is DEFINED (where it was written/declared).
-          vim.keymap.set("n", K.lsp.definition,      vim.lsp.buf.definition,     opts("LSP: go to definition"))
+          vim.keymap.set("n", K.lsp.definition, vim.lsp.buf.definition, opts("LSP: go to definition"))
           -- Jump to the DECLARATION (e.g. header in C, interface in TypeScript).
-          vim.keymap.set("n", K.lsp.declaration,     vim.lsp.buf.declaration,    opts("LSP: go to declaration"))
+          vim.keymap.set("n", K.lsp.declaration, vim.lsp.buf.declaration, opts("LSP: go to declaration"))
           -- Jump to the TYPE DEFINITION (hover on a variable → jump to its type).
           vim.keymap.set("n", K.lsp.type_definition, vim.lsp.buf.type_definition, opts("LSP: go to type definition"))
           -- Show all IMPLEMENTATIONS of an interface or abstract method.
-          vim.keymap.set("n", K.lsp.implementation,  vim.lsp.buf.implementation,  opts("LSP: go to implementation"))
+          vim.keymap.set("n", K.lsp.implementation, vim.lsp.buf.implementation, opts("LSP: go to implementation"))
           -- List all REFERENCES to the symbol under cursor across the project.
-          vim.keymap.set("n", K.lsp.references,      vim.lsp.buf.references,      opts("LSP: show all references"))
+          vim.keymap.set("n", K.lsp.references, vim.lsp.buf.references, opts("LSP: show all references"))
 
           -- ── INFORMATION ──────────────────────────────────────────────
           -- Show documentation popup. Press K again while popup is open to
@@ -424,7 +471,7 @@ return {
           -- ── EDITING ──────────────────────────────────────────────────
           -- Rename the symbol under cursor across ALL files in the project.
           -- Scope-aware — safer than a search-and-replace.
-          vim.keymap.set("n", K.lsp.rename,      vim.lsp.buf.rename,      opts("LSP: rename symbol"))
+          vim.keymap.set("n", K.lsp.rename, vim.lsp.buf.rename, opts("LSP: rename symbol"))
           -- Code actions: quick fixes, auto-imports, refactors, etc.
           -- Works in visual mode too (for range-based actions).
           vim.keymap.set({ "n", "v" }, K.lsp.code_action, vim.lsp.buf.code_action, opts("LSP: code actions"))
@@ -458,7 +505,7 @@ return {
           -- ── WORKSPACE ────────────────────────────────────────────────
           -- List all symbols in the current file (functions, classes, variables).
           -- Pairs well with Telescope for fuzzy searching.
-          vim.keymap.set("n", K.lsp.document_symbols,  vim.lsp.buf.document_symbol,  opts("LSP: document symbols"))
+          vim.keymap.set("n", K.lsp.document_symbols, vim.lsp.buf.document_symbol, opts("LSP: document symbols"))
           -- Same but across the whole project workspace.
           vim.keymap.set("n", K.lsp.workspace_symbols, vim.lsp.buf.workspace_symbol, opts("LSP: workspace symbols"))
 
@@ -473,7 +520,7 @@ return {
               )
             end, opts("LSP: toggle inlay hints"))
           end
-          
+
           -- ── FORMAT ON SAVE (opt-in) ────────────────────────────────────
           -- Uncomment the block below if you want the file to auto-format
           -- every time you save. The supports_method guard ensures we only
@@ -488,11 +535,9 @@ return {
           --     end,
           --   })
           -- end
-
         end, -- end LspAttach callback
       })
-
-    end, -- end nvim-lspconfig config
+    end,     -- end nvim-lspconfig config
   },
 
   -- ──────────────────────────────────────────────────────────────────────────
@@ -503,7 +548,7 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = { "mason-org/mason.nvim" },
-    opts = {      
+    opts = {
       -- Everything Mason can install goes here — LSP servers, formatters, linters.
       -- This is the single source of truth for our entire toolchain.
       -- Use Mason package names here (which differ slightly from lspconfig names
@@ -511,15 +556,15 @@ return {
       ensure_installed = {
 
         -- ── LSP SERVERS ────────────────────────────────────────────────
-        
+
         -- These overlap with mason-lspconfig's ensure_installed intentionally.
         -- mason-tool-installer handles the installation; mason-lspconfig handles
         -- the enabling. Having both listed in both places is the correct pattern.
         --
         -- Note: Mason package names differ slightly from lspconfig names in
         -- some cases (e.g. lspconfig "ts_ls" = Mason "typescript-language-server").
-        "typescript-language-server",  -- ts_ls
-        "lua-language-server",         -- lua_ls
+        "typescript-language-server", -- ts_ls
+        "lua-language-server",        -- lua_ls
         "html-lsp",
         "css-lsp",
         "json-lsp",
@@ -528,31 +573,36 @@ return {
         "bash-language-server",
         "yaml-language-server",
         "dockerfile-language-server",
-        "taplo",                       -- TOML
-        "marksman",                    -- Markdown
+        "taplo",    -- TOML
+        "marksman", -- Markdown
         --"nixd",                        -- Nix
 
+        -- arduino-language-server: intentionally absent from this list.
+        -- It cannot be Mason-managed on NixOS (binary patching incompatibility).
+        -- Installed via Nix in modules/arduino/hm.nix instead.
+        -- See the arduino_language_server vim.lsp.config() block above for details.
+
         -- ── FORMATTERS (used by conform.nvim) ───────────────────────────────────
-        "prettier",                    -- JS/TS/CSS/HTML/JSON/YAML/Markdown
-        "stylua",                      -- Lua
-        "black",                       -- Python
-        "isort",                       -- Python import sorting
-        "shfmt",                       -- Shell scripts
-        "goimports",                   -- Go
+        "prettier",  -- JS/TS/CSS/HTML/JSON/YAML/Markdown
+        "stylua",    -- Lua
+        "black",     -- Python
+        "isort",     -- Python import sorting
+        "shfmt",     -- Shell scripts
+        "goimports", -- Go
 
         -- ── LINTERS (nvim-lint) ─────────────────────────────────────────
-        "eslint_d",                    -- JS/TS (daemon, much faster than eslint)
-        "pylint",                      -- Python
+        "eslint_d",     -- JS/TS (daemon, much faster than eslint)
+        "pylint",       -- Python
         --"luacheck",                    -- Lua
-        "shellcheck",                  -- Shell scripts
-        "markdownlint",                -- Markdown
-        "hadolint",                    -- Dockerfile
+        "shellcheck",   -- Shell scripts
+        "markdownlint", -- Markdown
+        "hadolint",     -- Dockerfile
       },
 
 
       -- Check for tool updates automatically on startup.
       -- false = only install missing tools, don't auto-update existing ones.
-      -- Prevents Mason from running upgrade checks on every startup. 
+      -- Prevents Mason from running upgrade checks on every startup.
       -- Set to true if you want Mason to keep everything current on every launch
       -- (slightly slower startup, but you're always on latest versions).
       auto_update = false,
